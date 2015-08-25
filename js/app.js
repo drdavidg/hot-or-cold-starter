@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 	$('nav').on('click', 'ul > li > a.new', newGame );
 	// $('form').on('click', '#guessButton', checkGuess );
-	$('form').submit(checkGuess);
+	$('form').submit(checkGuess); //trying to fix the issue the form submit (& refresh) is causing
 
 
 	function newGame() {
@@ -16,7 +16,6 @@ $(document).ready(function(){
 	}
 
 	function checkGuess() {
-
 
 		var guess = $('#userGuess').val();
 		if (guess == x) {
