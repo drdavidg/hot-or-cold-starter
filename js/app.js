@@ -1,6 +1,20 @@
 
 $(document).ready(function(){
+
+
+	function newGame() {
+
+
+	}
+
+
+	function generateNumber() {
+
+
+	}
 	
+
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -13,5 +27,3 @@ $(document).ready(function(){
   	});
 
 });
-
-
