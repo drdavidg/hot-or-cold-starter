@@ -1,34 +1,63 @@
 
 $(document).ready(function(){
 
-	var x = secretNumber(); //set global variable of the secretNumber number to be guessed
-	console.log(x);
+	var x;
+	newGame(); //set global variable of the secretNumber number to be guessed
 
+	var count = $('#count').text();
 
 	$('nav').on('click', 'ul > li > a.new', newGame );
 	// $('form').on('click', '#guessButton', checkGuess );
 	$('form').submit(checkGuess); //trying to fix the issue the form submit (& refresh) is causing
 
-
 	function newGame() {
 		x = secretNumber(); // set the global variable to a new secret number
-		console.log(x);
+		count = 0;
+		$('span#count').text(count);
+		$('#userGuess').val(0);
+		$('ul#guessList').empty();
+		giveFeedback("Make your Guess!");
 	}
 
-	function checkGuess() {
-
+	function checkGuess(e) {
+		e.preventDefault(); //prevent form from submitting
 		var guess = $('#userGuess').val();
+
+		function logGuess() {
+			$('ul#guessList').append(function() {
+				return "<li>Guess #" + count + ":   " + guess + "</li>";
+			});
+		}
+
 		if (guess == x) {
-			$('h2#feedback').text("BINGO!!!");
+			giveFeedback("BINGO!!!");
+		}
+		else if ((guess < 1) || (guess > 100)) {
+			giveFeedback("Only guess a number between 1-100");
+			return;
+		}
+		else if (!parseInt(guess)) {
+			giveFeedback("Only numbers allowed as a guess, no strings");
+			return;
 		}
 		else if (guess > x) {
-			$('h2#feedback').text("Too High");
+			giveFeedback("Too High");
 		}
 		else if (guess < x) {
-			$('h2#feedback').text("Too Low");
+			giveFeedback("Too Low");
 		}
-		console.log(guess);
+		addCount();
+		logGuess();
 
+	}
+
+	function giveFeedback(msg) {
+		$('#feedback').text(msg);
+	}
+
+	function addCount() {
+		count++;
+		$('#count').text(count);
 	}
 
 	function secretNumber() {
