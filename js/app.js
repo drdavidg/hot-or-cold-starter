@@ -42,6 +42,10 @@ $(document).ready(function(){
 			giveFeedback("Only numbers allowed as a guess, no strings");
 			return;
 		}
+		else if (guess % 1 != 0) {
+			giveFeedback("No decimals.");
+			return;
+		}
 		else if ((jQuery.inArray(guess, allGuesses)) >= 0) {
 			giveFeedback("You already guessed that number!  Try a different number.");
 			return;
