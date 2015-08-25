@@ -17,6 +17,7 @@ $(document).ready(function(){
 		$('#userGuess').val(0);
 		$('ul#guessList').empty();
 		giveFeedback("Make your Guess!");
+		allGuesses = [];
 	}
 
 	function checkGuess(e) {
